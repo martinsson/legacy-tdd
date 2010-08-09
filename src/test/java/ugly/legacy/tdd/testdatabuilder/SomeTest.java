@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static ugly.legacy.tdd.testdatabuilder.KeywordBuilder.aKeyword;
+import static ugly.legacy.tdd.testdatabuilder.LeadBuilder.aLead;
 
 import org.junit.Test;
 
@@ -40,9 +41,5 @@ public class SomeTest {
 			.build();
 		assertThat(keyword.getLead(), instanceOf(Lead.class));
 		
-	}
-
-	private LeadBuilder aLead() {
-		return new LeadBuilder();
 	}
 }

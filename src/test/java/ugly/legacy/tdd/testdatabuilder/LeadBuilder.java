@@ -6,4 +6,8 @@ public class LeadBuilder {
 		return new Lead();
 	}
 
+	static LeadBuilder aLead() {
+		return new LeadBuilder();
+	}
+
 }
