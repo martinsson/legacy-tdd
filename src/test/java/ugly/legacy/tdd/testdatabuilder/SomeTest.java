@@ -1,14 +1,11 @@
 package ugly.legacy.tdd.testdatabuilder;
 
-import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import static ugly.legacy.tdd.testdatabuilder.KeywordBuilder.aKeyword;
-
-import java.util.Arrays;
 
 import org.junit.Test;
 
@@ -38,7 +35,7 @@ public class SomeTest {
 		Keyword keyword = aKeyword()
 		.with(aLead())
 		.build();
-		assertThat(keyword.getLead(), notNullValue());
+		assertThat(keyword.getLead(), instanceOf(Lead.class));
 		
 	}
 
