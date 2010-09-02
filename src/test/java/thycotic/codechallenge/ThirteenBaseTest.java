@@ -29,7 +29,7 @@ public class ThirteenBaseTest {
 		assertThat(convert(20), equalTo("17"));
 	}
 	
-	@Test @Ignore("for now") public void oneSevenZeroInTenBaseIs101InThirteenBase() throws Exception {
+	@Test public void oneSevenZeroInTenBaseIs101InThirteenBase() throws Exception {
 		assertThat(convert(170), equalTo("101"));
 	}
 	@Test @Ignore("dont understand the problem yet") public void itHandlesMediumNumbersToo() throws Exception {
@@ -62,11 +62,14 @@ public class ThirteenBaseTest {
 	}
 
 	private String convert(int tenBaseNumber) {
-		int div = tenBaseNumber / 13;
 		int rem = tenBaseNumber % 13;
-		if (rem < 10)
-			return String.valueOf(10 * div + rem);
-		else if (rem == 10) return "x";
+		if (rem < 10) {
+			Integer timesDivableBy13 = timesDivableBy13(tenBaseNumber);
+			if (timesDivableBy13 > 0) 
+				return String.valueOf(round(pow(10, timesDivableBy13)) + rem);
+			else
+				return String.valueOf(rem);
+		} else if (rem == 10) return "x";
 		else if (rem == 11) return "y";
 		else if (rem == 12) return "z";
 		else throw new RuntimeException("not implemented for " + tenBaseNumber);
