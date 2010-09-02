@@ -24,12 +24,11 @@ public class ThirteenBaseTest {
 	private String convert(int tenBaseNumber) {
 		int div = tenBaseNumber / 13;
 		int rem = tenBaseNumber % 13;
-		if (tenBaseNumber < 10)
-			return String.valueOf(rem);
-		else if (tenBaseNumber == 10) return "x";
-		else if (tenBaseNumber == 11) return "y";
-		else if (tenBaseNumber == 12) return "z";
-		else if (tenBaseNumber == 13) return String.valueOf(10*div);
+		if (rem < 10)
+			return String.valueOf(10 * div + rem);
+		else if (rem == 10) return "x";
+		else if (rem == 11) return "y";
+		else if (rem == 12) return "z";
 		else throw new RuntimeException("not implemented for " + tenBaseNumber);
 	}
 }
