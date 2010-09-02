@@ -42,9 +42,23 @@ public class ThirteenBaseTest {
 		assertThat(timesDivableBy13(170), equalTo(2));
 	}
 	
-	@Test public void exponentNofThirteen() {
-		long result = powerOfThirteen(2);
-		assertEquals(169, result);
+	@Test public void exponentTwoOfThirteenIs169() {
+		assertEquals(169, powerOfThirteen(2));
+	}
+	
+	@Test public void convertSingleDigitToThirteenBase() {
+		assertThat(convertSingleDigit(5), equalTo("5"));
+		assertThat(convertSingleDigit(10), equalTo("x"));
+		assertThat(convertSingleDigit(11), equalTo("y"));
+		assertThat(convertSingleDigit(12), equalTo("z"));
+	}
+
+	private String convertSingleDigit(long l) {
+		if (l < 10) return String.valueOf(l);
+		else if (l == 10) return "x";
+		else if (l == 11) return "y";
+		else if (l == 12) return "z";
+		else throw new IllegalArgumentException("no thirteen base correspondence for " + l);
 	}
 
 	private long powerOfThirteen(long n) {
@@ -62,16 +76,13 @@ public class ThirteenBaseTest {
 	}
 
 	private String convert(int tenBaseNumber) {
-		int rem = tenBaseNumber % 13;
-		if (rem < 10) {
-			Integer timesDivableBy13 = timesDivableBy13(tenBaseNumber);
-			if (timesDivableBy13 > 0) 
-				return String.valueOf(round(pow(10, timesDivableBy13)) + rem);
-			else
-				return String.valueOf(rem);
-		} else if (rem == 10) return "x";
-		else if (rem == 11) return "y";
-		else if (rem == 12) return "z";
-		else throw new RuntimeException("not implemented for " + tenBaseNumber);
+		Integer timesDivableBy13 = timesDivableBy13(tenBaseNumber);
+		String result = "";
+		long remainder = tenBaseNumber % powerOfThirteen(timesDivableBy13 + 1);
+		for (int i = timesDivableBy13; i >= 0; i--) {
+			result += convertSingleDigit(remainder / powerOfThirteen(i));
+			remainder = tenBaseNumber % powerOfThirteen(i);
+		}
+		return result;
 	}
 }
