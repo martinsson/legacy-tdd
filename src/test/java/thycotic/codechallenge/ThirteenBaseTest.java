@@ -2,11 +2,10 @@ package thycotic.codechallenge;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
-import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -34,6 +33,9 @@ public class ThirteenBaseTest {
 	}
 	@Test public void itHandlesMediumNumbersToo() throws Exception {
 		assertThat(convert(5006), equalTo("2381"));
+	}
+	@Test public void itHandlesLargeNumbersToo() throws Exception {
+		assertThat(convert(9999999), equalTo("20z1879"));
 	}
 	
 	@Test public void oneSevenZeroIsDivable2TimesBy13() throws Exception {
