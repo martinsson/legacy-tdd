@@ -32,7 +32,7 @@ public class ThirteenBaseTest {
 	@Test public void oneSevenZeroInTenBaseIs101InThirteenBase() throws Exception {
 		assertThat(convert(170), equalTo("101"));
 	}
-	@Test @Ignore("dont understand the problem yet") public void itHandlesMediumNumbersToo() throws Exception {
+	@Test public void itHandlesMediumNumbersToo() throws Exception {
 		assertThat(convert(5006), equalTo("2381"));
 	}
 	
