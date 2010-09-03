@@ -10,38 +10,42 @@ import org.junit.Test;
 
 
 public class ThirteenBaseTest {
-	@Test public void fiveInThirteenBaseEqualsFiveInTenBase() throws Exception {
+	@Test public void numbersLesserThanTenDontChange() throws Exception {
 		assertThat(convert(5), equalTo("5"));
 	}
 
-	@Test public void tenInTenBaseIsXinThirteenBase() throws Exception {
+	@Test public void tenConvertsToX() throws Exception {
 		assertThat(convert(10), equalTo("x"));
-		assertThat(convert(11), equalTo("y"));
-		assertThat(convert(12), equalTo("z"));
 	}
 
-	@Test public void thirteenInTenBaseIsTenInThirteenBase() throws Exception {
+	@Test public void elevenConvertsToY() throws Exception {
+		assertThat(convert(11), equalTo("y"));
+	}
+	@Test public void twelveConvertsToZ() throws Exception {
+		assertThat(convert(12), equalTo("z"));
+	}
+	@Test public void thirteenConvertsToTen() throws Exception {
 		assertThat(convert(13), equalTo("10"));
 	}
 
-	@Test public void twentyInTenBaseIs17InThirteenBase() throws Exception {
+	@Test public void twentyConvertsToSeventeen() throws Exception {
 		assertThat(convert(20), equalTo("17"));
 	}
 	
-	@Test public void oneSevenZeroInTenBaseIs101InThirteenBase() throws Exception {
+	@Test public void oneSevenZeroConvertsTo101() throws Exception {
 		assertThat(convert(170), equalTo("101"));
 	}
-	@Test public void itHandlesMediumNumbersToo() throws Exception {
+	@Test public void itHandlesMediumNumbers() throws Exception {
 		assertThat(convert(5006), equalTo("2381"));
 	}
-	@Test public void itHandlesLargeNumbersToo() throws Exception {
+	@Test public void itHandlesReallyLargeNumbers() throws Exception {
 		assertThat(convert(9999999), equalTo("20z1879"));
 	}
 	
-	@Test public void oneSevenZeroIsDivable2TimesBy13() throws Exception {
-		assertThat(timesDivableBy13(14), equalTo(1));
-		assertThat(timesDivableBy13(12), equalTo(0));
-		assertThat(timesDivableBy13(170), equalTo(2));
+	@Test public void returnsTheLargestExponentOfThirteenThatIsLesserThanOrEqualToTheGivenNumber() throws Exception {
+		assertThat(largestExponentOfThirteenIn(12), equalTo(0));
+		assertThat(largestExponentOfThirteenIn(13), equalTo(1));
+		assertThat(largestExponentOfThirteenIn(170), equalTo(2));
 	}
 	
 	@Test public void exponentTwoOfThirteenIs169() {
@@ -67,7 +71,7 @@ public class ThirteenBaseTest {
 		return round(pow(13,n));
 	}
 	
-	private Integer timesDivableBy13(int i) {
+	private Integer largestExponentOfThirteenIn(int i) {
 		int times = -1;
 		int div = i;
 		while (div > 0) {
@@ -78,7 +82,7 @@ public class ThirteenBaseTest {
 	}
 
 	private String convert(int tenBaseNumber) {
-		Integer timesDivableBy13 = timesDivableBy13(tenBaseNumber);
+		Integer timesDivableBy13 = largestExponentOfThirteenIn(tenBaseNumber);
 		String result = "";
 		long remainder;
 		for (int i = timesDivableBy13; i >= 0; i--) {
