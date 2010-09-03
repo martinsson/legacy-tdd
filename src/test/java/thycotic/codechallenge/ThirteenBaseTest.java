@@ -1,6 +1,7 @@
 package thycotic.codechallenge;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -9,6 +10,7 @@ import org.junit.Test;
 
 public class ThirteenBaseTest {
 	ThirteenConverter converter = new ThirteenConverter();
+	
 	@Test public void numbersLesserThanTenDontChange() throws Exception {
 		assertThat(convert(5), equalTo("5"));
 	}
@@ -69,5 +71,15 @@ public class ThirteenBaseTest {
 	}
 	private String convert(int tenBaseNumber) {
 		return converter.convert(tenBaseNumber);
+	}
+	
+	/* Other converters
+	 * Assert.AreEqual("111", new BinaryConverter().Convert(7));
+	 * Assert.AreEqual("55", new OctalConverter().Convert(45));
+	 * Assert.AreEqual("1f", new HexConverter().Convert(31));
+	 */
+	@Test
+	public void binaryConverter() throws Exception {
+		assertThat(new BinaryConverter().convert(7), equalTo("111"));
 	}
 }

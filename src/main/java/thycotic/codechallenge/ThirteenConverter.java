@@ -3,7 +3,7 @@ package thycotic.codechallenge;
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
 
-class ThirteenConverter {
+class ThirteenConverter implements Converter {
 	
 	String convertSingleDigit(long tenBaseNumber) {
 		if (tenBaseNumber < 10) return String.valueOf(tenBaseNumber);
@@ -27,7 +27,8 @@ class ThirteenConverter {
 		return exponent;
 	}
 
-	String convert(int tenBaseNumber) {
+	@Override
+	public String convert(int tenBaseNumber) {
 		Integer largestExponent = largestExponentOfThirteenIn(tenBaseNumber);
 		String result = "";
 		long remainder;
