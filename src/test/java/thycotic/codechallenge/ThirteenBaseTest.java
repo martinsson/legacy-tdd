@@ -72,20 +72,20 @@ public class ThirteenBaseTest {
 	}
 	
 	private Integer largestExponentOfThirteenIn(int i) {
-		int times = -1;
-		int div = i;
+		int exponent = 0;
+		int div = i / 13;
 		while (div > 0) {
 			div = div /13;
-			times++;
+			exponent++;
 		}
-		return times;
+		return exponent;
 	}
 
 	private String convert(int tenBaseNumber) {
-		Integer timesDivableBy13 = largestExponentOfThirteenIn(tenBaseNumber);
+		Integer largestExponent = largestExponentOfThirteenIn(tenBaseNumber);
 		String result = "";
 		long remainder;
-		for (int i = timesDivableBy13; i >= 0; i--) {
+		for (int i = largestExponent; i >= 0; i--) {
 			remainder = tenBaseNumber % powerOfThirteen(i+1);
 			result += convertSingleDigit(remainder / powerOfThirteen(i));
 		}
