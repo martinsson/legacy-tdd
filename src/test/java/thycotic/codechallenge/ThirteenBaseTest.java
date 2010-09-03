@@ -80,10 +80,10 @@ public class ThirteenBaseTest {
 	private String convert(int tenBaseNumber) {
 		Integer timesDivableBy13 = timesDivableBy13(tenBaseNumber);
 		String result = "";
-		long remainder = tenBaseNumber % powerOfThirteen(timesDivableBy13 + 1);
+		long remainder;
 		for (int i = timesDivableBy13; i >= 0; i--) {
+			remainder = tenBaseNumber % powerOfThirteen(i+1);
 			result += convertSingleDigit(remainder / powerOfThirteen(i));
-			remainder = tenBaseNumber % powerOfThirteen(i);
 		}
 		return result;
 	}
