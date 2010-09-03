@@ -59,15 +59,15 @@ public class ThirteenBaseTest {
 		assertThat(convertSingleDigit(12), equalTo("z"));
 	}
 
-	private String convertSingleDigit(long l) {
-		if (l < 10) return String.valueOf(l);
-		else if (l == 10) return "x";
-		else if (l == 11) return "y";
-		else if (l == 12) return "z";
-		else throw new IllegalArgumentException("no thirteen base correspondence for " + l);
+	private String convertSingleDigit(long tenBaseNumber) {
+		if (tenBaseNumber < 10) return String.valueOf(tenBaseNumber);
+		else if (tenBaseNumber == 10) return "x";
+		else if (tenBaseNumber == 11) return "y";
+		else if (tenBaseNumber == 12) return "z";
+		else throw new IllegalArgumentException("no thirteen base correspondence for " + tenBaseNumber);
 	}
 
-	private long powerOfThirteen(long n) {
+	private long powerOfThirteen(int n) {
 		return round(pow(13,n));
 	}
 	
