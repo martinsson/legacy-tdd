@@ -1,6 +1,7 @@
 package thycotic.codechallenge;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -80,6 +81,28 @@ public class ThirteenBaseTest {
 	 */
 	@Test @Ignore("committing green")
 	public void binaryConverter() throws Exception {
-		assertThat(new BinaryConverter().convert(7), equalTo("111"));
+		//assertThat(new BinaryConverter().convert(7), equalTo("111"));
+	}
+	
+	@Test
+	public void convertSingleDigitToTwoBase() throws Exception {
+		assertThat(convertSingleDigitToTwoBase(0), equalTo("0"));
+		assertThat(convertSingleDigitToTwoBase(1), equalTo("1"));
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void acceptsNothingHigherThanOne () throws Exception {
+		convertSingleDigitToTwoBase(2);
+	}
+
+	private String convertSingleDigitToTwoBase(int i) {
+		return new BinaryConverter().convertSingleDigitToTwoBase(i);
+	}
+
+	static class BinaryConverter {
+		private String convertSingleDigitToTwoBase(int i) {
+			if (i>1) throw new IllegalArgumentException("no thirteen base correspondence for " + i);
+			return String.valueOf(i);
+		}
 	}
 }
