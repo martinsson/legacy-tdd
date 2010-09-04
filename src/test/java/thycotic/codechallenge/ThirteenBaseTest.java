@@ -1,11 +1,9 @@
 package thycotic.codechallenge;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -78,9 +76,28 @@ public class ThirteenBaseTest {
 	 * Assert.AreEqual("55", new OctalConverter().Convert(45));
 	 * Assert.AreEqual("1f", new HexConverter().Convert(31));
 	 */
-	@Test @Ignore("committing green")
+	@Test 
 	public void binaryConverter() throws Exception {
 		assertThat(new BinaryConverter().convert(7), equalTo("111"));
+	}
+	
+	@Test
+	public void octalConverter() throws Exception {
+		assertThat(new OctalConverter().convert(45), equalTo("55"));
+	}
+	
+	static class OctalConverter extends Converter {
+
+		public OctalConverter() {
+			super(8);
+		}
+
+		@Override
+		protected String convertSingleDigit(long tenBaseNumber) {
+			if (tenBaseNumber > 7) throw new IllegalArgumentException("no " + base + " base correspondence for " + tenBaseNumber);
+			return String.valueOf(tenBaseNumber);
+		}
+		
 	}
 	
 
