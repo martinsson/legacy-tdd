@@ -1,11 +1,9 @@
 package thycotic.codechallenge;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -113,15 +111,18 @@ public class ThirteenBaseTest {
 		@Override
 		protected String convertSingleDigit(long tenBaseNumber) {
 			assertLessThanBase(tenBaseNumber);
-			switch ((int)tenBaseNumber) {
-			case 10: return "a";
-			case 11: return "b";
-			case 12: return "c";
-			case 13: return "d";
-			case 14: return "e";
-			case 15: return "f";
-			default:
+			if (tenBaseNumber < 10)
 				return String.valueOf(tenBaseNumber);
+			else {
+				switch ((int)tenBaseNumber) {
+				case 10: return "a";
+				case 11: return "b";
+				case 12: return "c";
+				case 13: return "d";
+				case 14: return "e";
+				case 15: return "f";
+				default: throw new RuntimeException("cannot happen");
+				}
 			}
 		}
 		
