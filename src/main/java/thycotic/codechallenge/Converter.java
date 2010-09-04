@@ -29,12 +29,15 @@ public abstract class Converter {
 	public String convert(int tenBaseNumber) {
 		Integer largestExponent = largestExponentOfBaseIn(tenBaseNumber);
 		String result = "";
-		long remainder;
-		for (int i = largestExponent; i >= 0; i--) {
-			remainder = tenBaseNumber % nthPowerOfBase(i+1);
-			result += convertSingleDigit(remainder / nthPowerOfBase(i));
+		for (int pos = largestExponent; pos >= 0; pos--) {
+			result += nextDigit(tenBaseNumber, pos);
 		}
 		return result;
+	}
+
+	private String nextDigit(int tenBaseNumber, int pos) {
+		long remainderOfLastPos = tenBaseNumber % nthPowerOfBase(pos+1);
+		return convertSingleDigit(remainderOfLastPos / nthPowerOfBase(pos));
 	}
 
 	protected final String convertSingleDigit(long tenBaseNumber) {
