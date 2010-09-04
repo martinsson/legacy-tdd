@@ -17,12 +17,13 @@ public abstract class Converter {
 
 	protected final Integer largestExponentOfBaseIn(int i) {
 		int exponent = 0;
-		int div = i / base;
-		while (div > 0) {
-			div = div /base;
+		while (nextExponentOfBaseIsLesserThan(i, exponent))
 			exponent++;
-		}
 		return exponent;
+	}
+
+	private boolean nextExponentOfBaseIsLesserThan(int i, int exponent) {
+		return nthPowerOfBase(exponent + 1) <= i;
 	}
 
 	public String convert(int tenBaseNumber) {
