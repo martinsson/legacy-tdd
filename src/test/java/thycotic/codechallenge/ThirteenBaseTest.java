@@ -86,19 +86,5 @@ public class ThirteenBaseTest {
 		assertThat(new OctalConverter().convert(45), equalTo("55"));
 	}
 	
-	static class OctalConverter extends Converter {
-
-		public OctalConverter() {
-			super(8);
-		}
-
-		@Override
-		protected String convertSingleDigit(long tenBaseNumber) {
-			assertLessThanBase(tenBaseNumber);
-			return String.valueOf(tenBaseNumber);
-		}
-		
-	}
-	
 
 }
