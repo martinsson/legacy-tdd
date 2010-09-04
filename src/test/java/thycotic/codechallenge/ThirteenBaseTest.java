@@ -94,7 +94,7 @@ public class ThirteenBaseTest {
 
 		@Override
 		protected String convertSingleDigit(long tenBaseNumber) {
-			if (tenBaseNumber > 7) throw new IllegalArgumentException("no " + base + " base correspondence for " + tenBaseNumber);
+			assertLessThanBase(tenBaseNumber);
 			return String.valueOf(tenBaseNumber);
 		}
 		

@@ -6,7 +6,7 @@ class BinaryConverter extends Converter{
 	}
 
 	protected String convertSingleDigit(long i) {
-		if (i>1) throw new IllegalArgumentException("no " + base + " base correspondence for " + i);
+		assertLessThanBase(i);
 		return String.valueOf(i);
 	}
 }

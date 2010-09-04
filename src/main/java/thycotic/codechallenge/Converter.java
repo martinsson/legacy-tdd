@@ -5,7 +5,7 @@ import static java.lang.Math.round;
 
 public abstract class Converter {
 
-	protected int base;
+	private int base;
 
 	public Converter(int base) {
 		this.base = base;
@@ -37,6 +37,10 @@ public abstract class Converter {
 	}
 
 	protected abstract String convertSingleDigit(long tenBaseNumber);
+
+	protected void assertLessThanBase(long tenBaseNumber) {
+		if (tenBaseNumber >= base) throw new IllegalArgumentException("no " + base + " base correspondence for " + tenBaseNumber);
+	}
 
 
 }
