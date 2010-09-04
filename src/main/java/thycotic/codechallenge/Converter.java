@@ -11,11 +11,11 @@ public abstract class Converter {
 		this.base = base;
 	}
 
-	protected long nthPowerOfBase(int n) {
+	protected final long nthPowerOfBase(int n) {
 		return round(pow(base,n));
 	}
 
-	protected Integer largestExponentOfBaseIn(int i) {
+	protected final Integer largestExponentOfBaseIn(int i) {
 		int exponent = 0;
 		int div = i / base;
 		while (div > 0) {
@@ -36,7 +36,7 @@ public abstract class Converter {
 		return result;
 	}
 
-	protected String convertSingleDigit(long tenBaseNumber) {
+	protected final String convertSingleDigit(long tenBaseNumber) {
 		assertLessThanBase(tenBaseNumber);
 		if (tenBaseNumber < 10)
 			return String.valueOf(tenBaseNumber);
@@ -46,7 +46,7 @@ public abstract class Converter {
 	}
 	protected abstract String convertToLetter(long tenBaseNumber);
 
-	protected void assertLessThanBase(long tenBaseNumber) {
+	protected final void assertLessThanBase(long tenBaseNumber) {
 		if (tenBaseNumber >= base) throw new IllegalArgumentException("no " + base + " base correspondence for " + tenBaseNumber);
 	}
 
