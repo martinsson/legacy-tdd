@@ -1,7 +1,42 @@
 package thycotic.codechallenge;
 
-interface Converter {
+import static java.lang.Math.pow;
+import static java.lang.Math.round;
 
-	String convert(int tenBaseNumber);
+public abstract class Converter {
+
+	protected int base;
+
+	public Converter(int base) {
+		this.base = base;
+	}
+
+	protected long nthPowerOfBase(int n) {
+		return round(pow(base,n));
+	}
+
+	protected Integer largestExponentOfBaseIn(int i) {
+		int exponent = 0;
+		int div = i / base;
+		while (div > 0) {
+			div = div /base;
+			exponent++;
+		}
+		return exponent;
+	}
+
+	public String convert(int tenBaseNumber) {
+		Integer largestExponent = largestExponentOfBaseIn(tenBaseNumber);
+		String result = "";
+		long remainder;
+		for (int i = largestExponent; i >= 0; i--) {
+			remainder = tenBaseNumber % nthPowerOfBase(i+1);
+			result += convertSingleDigit(remainder / nthPowerOfBase(i));
+		}
+		return result;
+	}
+
+	protected abstract String convertSingleDigit(long tenBaseNumber);
+
 
 }

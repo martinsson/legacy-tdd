@@ -51,7 +51,7 @@ public class ThirteenBaseTest {
 	
 
 	@Test public void exponentTwoOfThirteenIs169() {
-		assertEquals(169, converter.powerOfThirteen(2));
+		assertEquals(169, converter.nthPowerOfBase(2));
 	}
 	
 
@@ -67,7 +67,7 @@ public class ThirteenBaseTest {
 		return converter.convertSingleDigit(tenBaseNumber);
 	}
 	private Integer largestExponentOfThirteenIn(int i) {
-		return converter.largestExponentOfThirteenIn(i);
+		return converter.largestExponentOfBaseIn(i);
 	}
 	private String convert(int tenBaseNumber) {
 		return converter.convert(tenBaseNumber);
