@@ -75,34 +75,13 @@ public class ThirteenBaseTest {
 	}
 	
 	/* Other converters
-	 * Assert.AreEqual("111", new BinaryConverter().Convert(7));
 	 * Assert.AreEqual("55", new OctalConverter().Convert(45));
 	 * Assert.AreEqual("1f", new HexConverter().Convert(31));
 	 */
 	@Test @Ignore("committing green")
 	public void binaryConverter() throws Exception {
-		//assertThat(new BinaryConverter().convert(7), equalTo("111"));
+		assertThat(new BinaryConverter().convert(7), equalTo("111"));
 	}
 	
-	@Test
-	public void convertSingleDigitToTwoBase() throws Exception {
-		assertThat(convertSingleDigitToTwoBase(0), equalTo("0"));
-		assertThat(convertSingleDigitToTwoBase(1), equalTo("1"));
-	}
 
-	@Test(expected=IllegalArgumentException.class)
-	public void acceptsNothingHigherThanOne () throws Exception {
-		convertSingleDigitToTwoBase(2);
-	}
-
-	private String convertSingleDigitToTwoBase(int i) {
-		return new BinaryConverter().convertSingleDigitToTwoBase(i);
-	}
-
-	static class BinaryConverter {
-		private String convertSingleDigitToTwoBase(int i) {
-			if (i>1) throw new IllegalArgumentException("no thirteen base correspondence for " + i);
-			return String.valueOf(i);
-		}
-	}
 }
