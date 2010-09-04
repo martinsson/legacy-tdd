@@ -5,8 +5,9 @@ class BinaryConverter extends Converter{
 		super(2);
 	}
 
-	protected String convertSingleDigit(long i) {
-		assertLessThanBase(i);
-		return String.valueOf(i);
+	@Override
+	protected String convertToLetter(long tenBaseNumber) {
+		throw new RuntimeException("cannot happen");
 	}
+	
 }

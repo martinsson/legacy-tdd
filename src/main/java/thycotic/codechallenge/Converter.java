@@ -36,7 +36,15 @@ public abstract class Converter {
 		return result;
 	}
 
-	protected abstract String convertSingleDigit(long tenBaseNumber);
+	protected String convertSingleDigit(long tenBaseNumber) {
+		assertLessThanBase(tenBaseNumber);
+		if (tenBaseNumber < 10)
+			return String.valueOf(tenBaseNumber);
+		else {
+			return convertToLetter(tenBaseNumber);
+		}
+	}
+	protected abstract String convertToLetter(long tenBaseNumber);
 
 	protected void assertLessThanBase(long tenBaseNumber) {
 		if (tenBaseNumber >= base) throw new IllegalArgumentException("no " + base + " base correspondence for " + tenBaseNumber);

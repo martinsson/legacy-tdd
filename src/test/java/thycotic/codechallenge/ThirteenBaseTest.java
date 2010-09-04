@@ -109,20 +109,15 @@ public class ThirteenBaseTest {
 		}
 
 		@Override
-		protected String convertSingleDigit(long tenBaseNumber) {
-			assertLessThanBase(tenBaseNumber);
-			if (tenBaseNumber < 10)
-				return String.valueOf(tenBaseNumber);
-			else {
-				switch ((int)tenBaseNumber) {
-				case 10: return "a";
-				case 11: return "b";
-				case 12: return "c";
-				case 13: return "d";
-				case 14: return "e";
-				case 15: return "f";
-				default: throw new RuntimeException("cannot happen");
-				}
+		protected String convertToLetter(long tenBaseNumber) {
+			switch ((int)tenBaseNumber) {
+			case 10: return "a";
+			case 11: return "b";
+			case 12: return "c";
+			case 13: return "d";
+			case 14: return "e";
+			case 15: return "f";
+			default: throw new RuntimeException("cannot convert " + tenBaseNumber + " to a letter");
 			}
 		}
 		

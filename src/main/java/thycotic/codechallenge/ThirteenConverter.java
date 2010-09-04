@@ -7,11 +7,10 @@ class ThirteenConverter extends Converter {
 	}
 	
 	@Override
-	protected String convertSingleDigit(long tenBaseNumber) {
-		if (tenBaseNumber < 10) return String.valueOf(tenBaseNumber);
-		else if (tenBaseNumber == 10) return "x";
+	protected String convertToLetter(long tenBaseNumber) {
+		if (tenBaseNumber == 10) return "x";
 		else if (tenBaseNumber == 11) return "y";
 		else if (tenBaseNumber == 12) return "z";
-		else throw new IllegalArgumentException("no thirteen base correspondence for " + tenBaseNumber);
+		else throw new RuntimeException("cannot convert " + tenBaseNumber + " to a letter");
 	}
 }
