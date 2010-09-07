@@ -20,15 +20,15 @@ public abstract class Converter {
 		return result;
 	}
 
-	protected final Integer largestExponentOfBaseIn(int i) {
+	protected final Integer largestExponentOfBaseIn(int tenBaseNumber) {
 		int exponent = 0;
-		while (nextExponentOfBaseIsLesserThan(i, exponent))
+		while (exponentOfBaseIsLesserThan(tenBaseNumber, exponent+1))
 			exponent++;
 		return exponent;
 	}
 
-	private boolean nextExponentOfBaseIsLesserThan(int i, int exponent) {
-		return nthPowerOfBase(exponent + 1) <= i;
+	private boolean exponentOfBaseIsLesserThan(int tenBaseNumber, int exponent) {
+		return nthPowerOfBase(exponent) <= tenBaseNumber;
 	}
 	
 	protected final long nthPowerOfBase(int n) {
