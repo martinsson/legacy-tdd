@@ -11,8 +11,13 @@ public abstract class Converter {
 		this.base = base;
 	}
 
-	protected final long nthPowerOfBase(int n) {
-		return round(pow(base,n));
+	public String convert(int tenBaseNumber) {
+		Integer largestExponent = largestExponentOfBaseIn(tenBaseNumber);
+		String result = "";
+		for (int pos = largestExponent; pos >= 0; pos--) {
+			result += nextDigit(tenBaseNumber, pos);
+		}
+		return result;
 	}
 
 	protected final Integer largestExponentOfBaseIn(int i) {
@@ -25,14 +30,9 @@ public abstract class Converter {
 	private boolean nextExponentOfBaseIsLesserThan(int i, int exponent) {
 		return nthPowerOfBase(exponent + 1) <= i;
 	}
-
-	public String convert(int tenBaseNumber) {
-		Integer largestExponent = largestExponentOfBaseIn(tenBaseNumber);
-		String result = "";
-		for (int pos = largestExponent; pos >= 0; pos--) {
-			result += nextDigit(tenBaseNumber, pos);
-		}
-		return result;
+	
+	protected final long nthPowerOfBase(int n) {
+		return round(pow(base,n));
 	}
 
 	private String nextDigit(int tenBaseNumber, int pos) {
