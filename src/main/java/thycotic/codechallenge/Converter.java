@@ -30,9 +30,26 @@ public abstract class Converter {
 	private boolean exponentOfBaseIsLesserThan(int tenBaseNumber, int exponent) {
 		return nthPowerOfBase(exponent) <= tenBaseNumber;
 	}
+	static class Exponents {
+
+		private final int exponent;
+
+		public Exponents(int exponent) {
+			this.exponent = exponent;
+		}
+
+		public static Exponents exponent(int exponent) {
+			return new Exponents(exponent);
+		}
+
+		public Long of(int base) {
+			return round(pow(base,exponent));
+		}
+		
+	}
 	
 	protected final long nthPowerOfBase(int n) {
-		return round(pow(base,n));
+		return Exponents.exponent(n).of(base);
 	}
 
 	private String nextDigit(int tenBaseNumber, int pos) {
