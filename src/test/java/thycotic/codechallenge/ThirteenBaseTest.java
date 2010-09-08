@@ -2,9 +2,8 @@ package thycotic.codechallenge;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static thycotic.codechallenge.Converter.Exponents.exponent;
+import static thycotic.codechallenge.Exponents.exponent;
 
 import org.junit.Test;
 

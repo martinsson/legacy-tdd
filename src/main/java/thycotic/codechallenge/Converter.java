@@ -1,8 +1,6 @@
 package thycotic.codechallenge;
 
-import static java.lang.Math.pow;
-import static java.lang.Math.round;
-import static thycotic.codechallenge.Converter.Exponents.exponent;
+import static thycotic.codechallenge.Exponents.exponent;
 
 public abstract class Converter {
 
@@ -31,24 +29,6 @@ public abstract class Converter {
 	private boolean exponentOfBaseIsLesserThan(int tenBaseNumber, int exponent) {
 		return exponent(exponent).of(base) <= tenBaseNumber;
 	}
-	static class Exponents {
-
-		private final int exponent;
-
-		public Exponents(int exponent) {
-			this.exponent = exponent;
-		}
-
-		public static Exponents exponent(int exponent) {
-			return new Exponents(exponent);
-		}
-
-		public Long of(int base) {
-			return round(pow(base,exponent));
-		}
-		
-	}
-	
 	private String nextDigit(int tenBaseNumber, int pos) {
 		int nextPos = pos+1;
 		long remainderOfLastPos = tenBaseNumber % exponent(nextPos).of(base);
@@ -65,7 +45,7 @@ public abstract class Converter {
 	}
 	protected abstract String convertToLetter(long tenBaseNumber);
 
-	protected final void assertLessThanBase(long tenBaseNumber) {
+	private final void assertLessThanBase(long tenBaseNumber) {
 		if (tenBaseNumber >= base) throw new IllegalArgumentException("no " + base + " base correspondence for " + tenBaseNumber);
 	}
 
