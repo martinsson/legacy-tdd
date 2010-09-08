@@ -30,8 +30,8 @@ public abstract class Converter {
 		return exponent(exponent).of(base) <= tenBaseNumber;
 	}
 	private String nextDigit(int tenBaseNumber, int pos) {
-		int nextPos = pos+1;
-		long remainderOfLastPos = tenBaseNumber % exponent(nextPos).of(base);
+		int lastPos = pos+1;
+		long remainderOfLastPos = tenBaseNumber % exponent(lastPos).of(base);
 		return convertSingleDigit(remainderOfLastPos / exponent(pos).of(base));
 	}
 
