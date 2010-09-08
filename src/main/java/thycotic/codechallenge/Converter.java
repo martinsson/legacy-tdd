@@ -20,15 +20,12 @@ public abstract class Converter {
 	}
 
 	protected final Integer largestExponentOfBaseIn(int tenBaseNumber) {
-		int exponent = 0;
-		while (exponentOfBaseIsLesserThan(tenBaseNumber, exponent+1))
-			exponent++;
-		return exponent;
+		int n = 0;
+		while (exponent((n+1)).of(base) <= tenBaseNumber)
+			n++;
+		return n;
 	}
 
-	private boolean exponentOfBaseIsLesserThan(int tenBaseNumber, int exponent) {
-		return exponent(exponent).of(base) <= tenBaseNumber;
-	}
 	private String nextDigit(int tenBaseNumber, int pos) {
 		int lastPos = pos+1;
 		long remainderOfLastPos = tenBaseNumber % exponent(lastPos).of(base);
