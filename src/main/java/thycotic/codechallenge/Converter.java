@@ -2,6 +2,7 @@ package thycotic.codechallenge;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
+import static thycotic.codechallenge.Converter.Exponents.exponent;
 
 public abstract class Converter {
 
@@ -28,7 +29,7 @@ public abstract class Converter {
 	}
 
 	private boolean exponentOfBaseIsLesserThan(int tenBaseNumber, int exponent) {
-		return nthPowerOfBase(exponent) <= tenBaseNumber;
+		return exponent(exponent).of(base) <= tenBaseNumber;
 	}
 	static class Exponents {
 
@@ -48,13 +49,10 @@ public abstract class Converter {
 		
 	}
 	
-	protected final long nthPowerOfBase(int n) {
-		return Exponents.exponent(n).of(base);
-	}
-
 	private String nextDigit(int tenBaseNumber, int pos) {
-		long remainderOfLastPos = tenBaseNumber % nthPowerOfBase(pos+1);
-		return convertSingleDigit(remainderOfLastPos / nthPowerOfBase(pos));
+		int nextPos = pos+1;
+		long remainderOfLastPos = tenBaseNumber % exponent(nextPos).of(base);
+		return convertSingleDigit(remainderOfLastPos / exponent(pos).of(base));
 	}
 
 	protected final String convertSingleDigit(long tenBaseNumber) {
