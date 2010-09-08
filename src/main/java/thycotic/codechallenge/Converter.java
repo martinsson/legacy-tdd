@@ -11,9 +11,9 @@ public abstract class Converter {
 	}
 
 	public String convert(int tenBaseNumber) {
-		Integer largestExponent = largestExponentOfBaseIn(tenBaseNumber);
+		Integer sizeOfConvertedNumber = largestExponentOfBaseIn(tenBaseNumber);
 		String result = "";
-		for (int pos = largestExponent; pos >= 0; pos--) {
+		for (int pos = sizeOfConvertedNumber; pos >= 0; pos--) {
 			result += nextDigit(tenBaseNumber, pos);
 		}
 		return result;
