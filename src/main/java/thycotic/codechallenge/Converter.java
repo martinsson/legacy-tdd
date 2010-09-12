@@ -21,7 +21,7 @@ public abstract class Converter {
 
 	protected final Integer largestExponentOfBaseIn(int tenBaseNumber) {
 		int n = 0;
-		while (exponent((n+1)).of(base) <= tenBaseNumber)
+		while (exponent(n+1).of(base) <= tenBaseNumber)
 			n++;
 		return n;
 	}
@@ -29,7 +29,8 @@ public abstract class Converter {
 	private String nextDigit(int tenBaseNumber, int pos) {
 		int lastPos = pos+1;
 		long remainderOfLastPos = tenBaseNumber % exponent(lastPos).of(base);
-		return convertSingleDigit(remainderOfLastPos / exponent(pos).of(base));
+		long nextDigitInTenBase = remainderOfLastPos / exponent(pos).of(base);
+		return convertSingleDigit(nextDigitInTenBase);
 	}
 
 	protected final String convertSingleDigit(long tenBaseNumber) {
