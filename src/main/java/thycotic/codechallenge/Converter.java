@@ -1,5 +1,6 @@
 package thycotic.codechallenge;
 
+import static java.lang.Math.log;
 import static thycotic.codechallenge.Exponents.exponent;
 
 public abstract class Converter {
@@ -20,10 +21,7 @@ public abstract class Converter {
 	}
 
 	protected final Integer largestExponentOfBaseIn(int tenBaseNumber) {
-		int n = 0;
-		while (exponent(n+1).of(base) <= tenBaseNumber)
-			n++;
-		return n;
+		return (int)(log(tenBaseNumber)/log(base));
 	}
 
 	private String nextDigit(int tenBaseNumber, int pos) {
