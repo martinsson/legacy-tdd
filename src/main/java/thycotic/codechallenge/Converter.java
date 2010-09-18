@@ -15,7 +15,7 @@ public abstract class Converter {
 		Integer sizeOfConvertedNumber = largestExponentOfBaseIn(tenBaseNumber);
 		String result = "";
 		for (int pos = sizeOfConvertedNumber; pos >= 0; pos--) {
-			result += nextDigit(tenBaseNumber, pos);
+			result += digitAtPosition(pos, tenBaseNumber);
 		}
 		return result;
 	}
@@ -24,7 +24,7 @@ public abstract class Converter {
 		return (int)(log(tenBaseNumber)/log(base));
 	}
 
-	private String nextDigit(int tenBaseNumber, int pos) {
+	private String digitAtPosition(int pos, int tenBaseNumber) {
 		int lastPos = pos+1;
 		long remainderOfLastPos = tenBaseNumber % exponent(lastPos).of(base);
 		long nextDigitInTenBase = remainderOfLastPos / exponent(pos).of(base);
