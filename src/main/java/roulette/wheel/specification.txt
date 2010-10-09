@@ -1,4 +1,5 @@
-the wheel spins for 20 seconds then stops at a random number between 0 and 36
+the wheel spins for 20 seconds then stops at
+ a random number between 0 and 36
 
 produce a random number between 0 and 36
 ? assert even distribution
