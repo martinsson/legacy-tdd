@@ -10,6 +10,7 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
@@ -31,17 +32,35 @@ public class WhenWeSpinTheWheel {
 	
 	@Test
 	public void theResultIsBetween0And36() throws Exception {
-		List<Integer> randNumbers = new ArrayList<Integer>();
-		for (int i = 0; i < 10000; i++) {
-			double rouletteResult = randomBetweenZeroAndOne()*37;
-			int rouletteResultAsInt = (int)rouletteResult;
-			randNumbers.add(rouletteResultAsInt);
-		}
+		int repetitions = 100000;
+		List<Integer> randNumbers = rouletteResults(repetitions);
 		assertThat(randNumbers, hasItem(equalTo(36)));
 		assertThat(randNumbers, hasItem(equalTo(0)));
-		double average = sum(randNumbers).doubleValue()/10000;
-		assertThat(average, closeTo(18, 1));
 	}
+	
+	@Test
+	public void theAverageIs18() throws Exception {
+		int repetitions = 100000;
+		List<Integer> randNumbers = rouletteResults(repetitions);
+		double average = sum(randNumbers).doubleValue()/repetitions;
+		assertThat(average, closeTo(18, 0.1));
+	}
+
+	private List<Integer> rouletteResults(int quantity) {
+		List<Integer> randNumbers = new ArrayList<Integer>();
+		for (int i = 0; i < quantity; i++) {
+			randNumbers.add(rouletteResult());
+		}
+		return randNumbers;
+	}
+
+	private int rouletteResult() {
+		double rouletteResult = randomBetweenZeroAndOne()*(36+1);
+		int rouletteResultAsInt = (int)rouletteResult;
+		return rouletteResultAsInt;
+	}
+	
+	
 	
 	private double randomBetweenZeroAndOne() {
 		return Math.random();
