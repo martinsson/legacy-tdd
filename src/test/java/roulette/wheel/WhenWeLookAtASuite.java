@@ -45,28 +45,13 @@ public class WhenWeLookAtASuite {
 		assertThat(average, closeTo(18, 0.1));
 	}
 
-	private List<Integer> rouletteResults(int rEPETITIONS2) {
-		return new RouletteWheel().rouletteResults(rEPETITIONS2);
-	}
-
-	static class RouletteWheel {
-		private List<Integer> rouletteResults(int quantity) {
-			List<Integer> randNumbers = new ArrayList<Integer>();
-			for (int i = 0; i < quantity; i++) {
-				randNumbers.add(rouletteResult());
-			}
-			return randNumbers;
+	private List<Integer> rouletteResults(int quantity) {
+		RouletteWheel rouletteWheel = new RouletteWheel();
+		List<Integer> randNumbers = new ArrayList<Integer>();
+		for (int i = 0; i < quantity; i++) {
+			randNumbers.add(rouletteWheel.rouletteResult());
 		}
-	
-		private int rouletteResult() {
-			double rouletteResult = randomBetweenZeroAndOne()*(36+1);
-			int rouletteResultAsInt = (int)rouletteResult;
-			return rouletteResultAsInt;
-		}
-		
-		private double randomBetweenZeroAndOne() {
-			return Math.random();
-		}
+		return randNumbers;
 	}
 	
 	
