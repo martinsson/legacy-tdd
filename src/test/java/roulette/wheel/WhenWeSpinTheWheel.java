@@ -22,27 +22,26 @@ import org.junit.Test;
 
 
 public class WhenWeSpinTheWheel {
+	private static int REPETITIONS = 100000;
 
 	@Test
 	public void theResultIsRandom() throws Exception {
-		double aRandomNumber = randomBetweenZeroAndOne();
-		double anotherRandomNumber = randomBetweenZeroAndOne();
-		assertThat(aRandomNumber, not(equalTo(anotherRandomNumber)));
+		List<Integer> oneSuite = rouletteResults(REPETITIONS);
+		List<Integer> anotherSuite = rouletteResults(REPETITIONS);
+		assertThat(oneSuite, not(equalTo(anotherSuite)));
 	}
 	
 	@Test
 	public void theResultIsBetween0And36() throws Exception {
-		int repetitions = 100000;
-		List<Integer> randNumbers = rouletteResults(repetitions);
+		List<Integer> randNumbers = rouletteResults(REPETITIONS);
 		assertThat(randNumbers, hasItem(equalTo(36)));
 		assertThat(randNumbers, hasItem(equalTo(0)));
 	}
 	
 	@Test
 	public void theAverageIs18() throws Exception {
-		int repetitions = 100000;
-		List<Integer> randNumbers = rouletteResults(repetitions);
-		double average = sum(randNumbers).doubleValue()/repetitions;
+		List<Integer> randNumbers = rouletteResults(REPETITIONS);
+		double average = sum(randNumbers).doubleValue()/REPETITIONS;
 		assertThat(average, closeTo(18, 0.1));
 	}
 
