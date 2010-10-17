@@ -74,56 +74,5 @@ public class ThirteenBaseTest {
 		return converter.convert(tenBaseNumber);
 	}
 	
-	/* Other converters
-	 * Assert.AreEqual("55", new OctalConverter().Convert(45));
-	 * Assert.AreEqual("1f", new HexConverter().Convert(31));
-	 */
-	@Test 
-	public void binaryConverter() throws Exception {
-		assertThat(new BinaryConverter().convert(7), equalTo("111"));
-	}
-	
-	@Test
-	public void octalConverter() throws Exception {
-		assertThat(new OctalConverter().convert(45), equalTo("55"));
-	}
-	
-	@Test 
-	public void hexConverter() throws Exception {
-		assertThat(new HexConverter().convert(31), equalTo("1f"));
-	}
-	
-	@Test
-	public void singleDigitToHexBase() throws Exception {
-		HexConverter hexConverter = new HexConverter();
-		assertThat(hexConverter.convertSingleDigit(9), equalTo("9"));
-		assertThat(hexConverter.convertSingleDigit(10), equalTo("a"));
-		assertThat(hexConverter.convertSingleDigit(11), equalTo("b"));
-		assertThat(hexConverter.convertSingleDigit(12), equalTo("c"));
-		assertThat(hexConverter.convertSingleDigit(13), equalTo("d"));
-		assertThat(hexConverter.convertSingleDigit(14), equalTo("e"));
-		assertThat(hexConverter.convertSingleDigit(15), equalTo("f"));
-	}
-	static class HexConverter extends Converter {
-
-		public HexConverter() {
-			super(16);
-		}
-
-		@Override
-		protected String convertToLetter(long tenBaseNumber) {
-			switch ((int)tenBaseNumber) {
-			case 10: return "a";
-			case 11: return "b";
-			case 12: return "c";
-			case 13: return "d";
-			case 14: return "e";
-			case 15: return "f";
-			default: throw new RuntimeException("cannot convert " + tenBaseNumber + " to a letter");
-			}
-		}
-		
-	}
-	
 
 }
