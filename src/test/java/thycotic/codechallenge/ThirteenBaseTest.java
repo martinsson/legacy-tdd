@@ -3,7 +3,7 @@ package thycotic.codechallenge;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static thycotic.codechallenge.Exponents.exponent;
+import static thycotic.codechallenge.OngoingCalculation.calculate;
 
 import org.junit.Test;
 
@@ -52,7 +52,7 @@ public class ThirteenBaseTest {
 
 	@Test public void exponentTwoOfThirteenIs169() {
 		Long oneHundredSixtyNine = Long.valueOf(169);
-		assertThat(exponent(2).of(13), is(oneHundredSixtyNine));
+		assertThat(calculate(13).exponent(2), is(oneHundredSixtyNine));
 	}
 	
 

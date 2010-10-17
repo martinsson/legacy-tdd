@@ -1,7 +1,7 @@
 package thycotic.codechallenge;
 
 import static java.lang.Math.log;
-import static thycotic.codechallenge.Exponents.exponent;
+import static thycotic.codechallenge.OngoingCalculation.calculate;
 
 public abstract class Converter {
 
@@ -28,8 +28,8 @@ public abstract class Converter {
 
 	private String nextDigit(int tenBaseNumber, int pos) {
 		int nextpos = pos+1;
-		long remainderOfNextPos = tenBaseNumber % exponent(nextpos).of(base);
-		return convertSingleDigit(remainderOfNextPos / exponent(pos).of(base));
+		long remainderOfNextPos = tenBaseNumber % calculate(base).exponent(nextpos);
+		return convertSingleDigit(remainderOfNextPos / calculate(base).exponent(pos));
 	}
 
 	protected final String convertSingleDigit(long tenBaseNumber) {
