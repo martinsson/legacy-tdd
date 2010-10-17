@@ -1,7 +1,7 @@
 package thycotic.codechallenge;
 
 import static java.lang.Math.log;
-import static thycotic.codechallenge.OngoingCalculation.calculate;
+import static thycotic.codechallenge.fluidinterface.OngoingCalculation.calculate;
 
 public abstract class Converter {
 

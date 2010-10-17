@@ -3,7 +3,7 @@ package thycotic.codechallenge;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static thycotic.codechallenge.OngoingCalculation.calculate;
+import static thycotic.codechallenge.fluidinterface.OngoingCalculation.calculate;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package thycotic.codechallenge;
+package thycotic.codechallenge.fluidinterface;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
@@ -15,7 +15,7 @@ public class OngoingCalculation {
 		return round(pow(base, nextpos));
 	}
 
-	static OngoingCalculation calculate(int base) {
+	public static OngoingCalculation calculate(int base) {
 		return new OngoingCalculation(base);
 	}
 
