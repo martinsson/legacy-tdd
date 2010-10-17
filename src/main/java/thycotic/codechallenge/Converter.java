@@ -1,5 +1,6 @@
 package thycotic.codechallenge;
 
+import static java.lang.Math.log;
 import static thycotic.codechallenge.Exponents.exponent;
 
 public abstract class Converter {
@@ -13,23 +14,22 @@ public abstract class Converter {
 	public String convert(int tenBaseNumber) {
 		Integer sizeOfConvertedNumber = largestExponentOfBaseIn(tenBaseNumber);
 		String result = "";
-		for (int pos = sizeOfConvertedNumber; pos >= 0; pos--) {
-			result += nextDigit(tenBaseNumber, pos);
+		for (int pos = 0; pos <= sizeOfConvertedNumber; pos++) {
+			result = nextDigit(tenBaseNumber, pos) + result;
 		}
 		return result;
 	}
 
 	protected final Integer largestExponentOfBaseIn(int tenBaseNumber) {
-		int n = 0;
-		while (exponent((n+1)).of(base) <= tenBaseNumber)
-			n++;
-		return n;
+		double exponentOfBaseEqualingGivenNumber = log(tenBaseNumber)/log(base);
+		int largestInteger = (int)exponentOfBaseEqualingGivenNumber;
+		return largestInteger;
 	}
 
 	private String nextDigit(int tenBaseNumber, int pos) {
-		int lastPos = pos+1;
-		long remainderOfLastPos = tenBaseNumber % exponent(lastPos).of(base);
-		return convertSingleDigit(remainderOfLastPos / exponent(pos).of(base));
+		int nextpos = pos+1;
+		long remainderOfNextPos = tenBaseNumber % exponent(nextpos).of(base);
+		return convertSingleDigit(remainderOfNextPos / exponent(pos).of(base));
 	}
 
 	protected final String convertSingleDigit(long tenBaseNumber) {
