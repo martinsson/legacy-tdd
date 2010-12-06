@@ -16,7 +16,7 @@ mvn install
 
 if [ $? -eq 0 ]; then
    echo "publishing to: $REPO"
-   git push $REPO $BRANCH
+   git push $REPO master
 else
    echo "Unable to build"
    exit $?
