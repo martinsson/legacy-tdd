@@ -4,10 +4,16 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import org.junit.Before;
 import org.junit.Test;
 
 public class GrepTest {
-
+    
+    @Before
+    public void initBeforeTest() throws Exception {
+        assertTrue(new File("src/test/ressources/output.txt").delete());
+        
+    }
     @Test
     public void copiesTheFileWhenPatternIsEmptyString() throws Exception {
         String outPutFile = "src/test/ressources/output.txt";
@@ -44,6 +50,9 @@ public class GrepTest {
         
         assertTrue(outputscanner.hasNextLine() == inputscanner.hasNextLine());
         assertTrue(areSame);
+        
+        outputscanner.close();
+        inputscanner.close();
     }
     
     

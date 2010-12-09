@@ -24,6 +24,7 @@ public class Grep {
                 writer.println(line );
         }
         writer.close();
+        inputScanner.close();
     }
 
 }
