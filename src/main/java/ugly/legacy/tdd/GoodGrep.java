@@ -20,6 +20,8 @@ public class GoodGrep {
             if (currentLine.contains(pattern))
                 outputStream.println(currentLine);
         }
+        inputStream.close();
+        outputStream.close();
     }
 
 }

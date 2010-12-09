@@ -51,5 +51,17 @@ public class GoodGrepTest {
         verify(printStream).println("Jag heter Johan och tycker om att programmera tillsammans med kompisar.");
         verify(printStream).println("// Johan");
     }
+    
+    @Test
+    public void weCloseTheStreamsAfterGrepping() throws Exception {
+        BufferedReader  inputStream = mock(BufferedReader.class);
+        PrintStream printStream = mock(PrintStream.class);
+        GoodGrep goodGrep = new GoodGrep(inputStream, printStream);
+        goodGrep.grep("Johan");
+        
+        verify(inputStream).close();
+        verify(printStream).close();
+        
+    }
 
 }
