@@ -1,21 +1,27 @@
 package matchers.dojo;
 
+import static ch.lambdaj.Lambda.sum;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.both;
+import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.logging.impl.AvalonLogger;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import ch.lambdaj.Lambda;
 
 
 public class TestingMatchersTest {
@@ -26,21 +32,31 @@ public class TestingMatchersTest {
         assertTrue(helloString.startsWith("hello"));
     }
     
-    @Test
+    @Test @Ignore
     public void allPossibleResultsArePresented() throws Exception {
         int numberOfDice = 100;
-        List<Integer> manyRolls = new Dice(numberOfDice).roll();
+        List<Integer> manyRolls = new BadDice(numberOfDice).roll();
         assertTrue(manyRolls.containsAll(asList(1, 2, 3, 4, 5, 6)));
     }
     
-    @Test
+    @Test @Ignore
     public void aDieRollIsAlwaysBetweenOneAndSix() throws Exception {
         int numberOfDice = 100;
-        List<Integer> manyRolls = new Dice(numberOfDice).roll();
+        List<Integer> manyRolls = new BadDice(numberOfDice).roll();
         for (Integer roll : manyRolls) {
             assertTrue(roll >= 1);
             assertTrue(roll <= 6);
         }
+    }
+    
+    @Test
+    public void diceAreNotWeighted() throws Exception {
+        Dice dice = new RoundingDice(1000);
+        List<Integer> manyRolls = dice.roll();
+        double numberOfRolls = manyRolls.size()*1.0;
+        double average = (Integer)sum(manyRolls)/numberOfRolls;
+        assertTrue(average < 3.6);
+        assertTrue(average > 3.4);
     }
     
     @Test @Ignore
@@ -57,7 +73,7 @@ public class TestingMatchersTest {
         return asList(1, 1, 2, 3, 5, 8, 13, 21);
     }
     
-    @Test
+    @Test @Ignore
     public void theBoundedFIFOListRemovesTheFistElementSetAcceptsOnlyEntriesThatDoNotAlreadyExist() throws Exception {
         List<String> existingFriends = asList("Celine", "Jean", "Fred", "Hervé");
         BoundedSet<String> boundedSet = new BoundedSet<String>(5, existingFriends);
