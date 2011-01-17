@@ -2,6 +2,8 @@ package matchers.dojo;
 
 import static ch.lambdaj.Lambda.sum;
 import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.argThat;
@@ -9,8 +11,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeDiagnosingMatcher;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -58,5 +66,38 @@ public class TestingMatchersTest {
         verify(mockedWriter).write(argThat(startsWith("Il y a")));
     }
     
+    @Test 
+    public void weCanAddElementsToTheSet() throws Exception {
+        Set<String> cards = new TreeSet<String>();
+        cards.add("1 of clubs");
+        cards.add("king of hearts");
+        cards.add("king of heards");
+        assertThat(cards, is(ofSize(2)));
+    }
+
+    /* To test
+    returnsFalseWhenTheSizeDiffersFromWhatIsExpected
+    returnsTrueWhenTheSizeIsCorrect
+    describesTheExpectedCondition
+    describesWhyTheMatchWasntPossible
+     */
+    private Matcher<Collection<String>> ofSize(final Integer expectedSize) {
+        return new TypeSafeDiagnosingMatcher<Collection<String>>() {
+
+            @Override
+            public void describeTo(Description description) {
+                // TODO Auto-generated method stub
+                
+            }
+
+            @Override
+            protected boolean matchesSafely(Collection<String> item, Description mismatchDescription) {
+                // TODO Auto-generated method stub
+                return false;
+            }
+        };
+    }
+
+  
     
 }
