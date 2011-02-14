@@ -35,7 +35,7 @@ public class TestingMatchersTest {
   //replace with one single matcher
     @Test @Ignore
     public void diceAreNotWeighted() throws Exception {
-        Dice dice = new RoundingDice(1000);
+        Dice dice = new RoundingDice(100);
         List<Integer> manyRolls = dice.roll();
         double numberOfRolls = manyRolls.size()*1.0;
         double average = (Integer)sum(manyRolls)/numberOfRolls;
@@ -46,7 +46,7 @@ public class TestingMatchersTest {
   //replace with generic matcher
     @Test @Ignore
     public void allPossibleResultsArePresented() throws Exception {
-        int numberOfDice = 1000;
+        int numberOfDice = 100;
         List<Integer> manyRolls = new BadDice(numberOfDice).roll();
         List<Integer> possibleResults = asList(1, 2, 3, 4, 5, 6);
 		assertTrue(manyRolls.containsAll(possibleResults));
@@ -56,7 +56,7 @@ public class TestingMatchersTest {
   //but for-loops are a smell in tests, replace it with one or two matchers
     @Test @Ignore
     public void aDieRollIsAlwaysBetweenOneAndSix() throws Exception {
-        int numberOfDice = 1000;
+        int numberOfDice = 100;
         List<Integer> manyRolls = new BadDice(numberOfDice).roll();
         for (Integer roll : manyRolls) {
             assertTrue(roll >= 1);
